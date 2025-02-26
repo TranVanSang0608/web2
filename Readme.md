@@ -47,4 +47,6 @@ Hệ thống quản lý dự án và nhiệm vụ giúp người dùng tổ ch�
 - Thêm hệ thống báo cáo tiến độ
 - Cải thiện giao diện và trải nghiệm người dùng
 
+## link repo: https://github.com/TranVanSang0608/web2
+
 
