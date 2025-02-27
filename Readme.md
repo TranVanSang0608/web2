@@ -7,7 +7,6 @@ Hệ thống quản lý dự án và nhiệm vụ giúp người dùng tổ ch�
 ### 1. Quản Lý Tài Khoản
 - Đăng ký tài khoản
 - Đăng nhập và xác thực
-- Quên mật khẩu
 
 ### 2. Quản Lý Dự Án
 - Tạo dự án mới
