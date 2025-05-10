@@ -95,10 +95,9 @@ class ProjectTaskController extends Controller
             'due_date' => 'nullable|date',
             'status' => 'required|in:pending,in_progress,completed,cancelled',
         ]);
+          $task->update($validated);
         
-        $task->update($validated);
-        
-        return redirect()->route('projects.tasks.show', [$project, $task])->with('success', 'Công việc đã được cập nhật thành công!');
+        return redirect()->route('projects.show', $project)->with('success', 'Công việc đã được cập nhật thành công!');
     }
 
     public function destroy(Project $project, Task $task)
