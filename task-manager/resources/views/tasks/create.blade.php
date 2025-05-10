@@ -3,9 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Tạo công việc mới</div>
+        <div class="col-md-8">            <div class="card border rounded shadow-sm">
+                <div class="card-header" style="background-color: #f1f3f5;"><i class="bi bi-plus-circle me-2"></i>Tạo công việc mới</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('tasks.store') }}">
                         @csrf
@@ -68,11 +67,9 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <a href="{{ route('tasks.index') }}" class="btn btn-secondary">Quay lại</a>
-                            <button type="submit" class="btn btn-primary">Tạo công việc</button>
+                        </div>                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('tasks.index') }}" class="btn btn-secondary"><i class="bi bi-arrow-left me-1"></i>Quay lại</a>
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>Tạo công việc</button>
                         </div>
                     </form>
                 </div>

@@ -3,10 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Danh sách công việc</span>
+        <div class="col-md-12">            <div class="card border rounded shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #f1f3f5;">
+                    <span class="fw-bold"><i class="bi bi-list-check me-2"></i>Danh sách công việc</span>
                     <a href="{{ route('tasks.create') }}" class="btn btn-primary">Tạo công việc mới</a>
                 </div>
                 <div class="card-body">
@@ -32,19 +31,18 @@
                                     @foreach($tasks as $task)
                                         <tr>
                                             <td><a href="{{ route('tasks.show', $task) }}" style="text-decoration: none">{{ $task->title }}</a></td>
-                                            <td>
-                                                @switch($task->status)
+                                            <td>                                                @switch($task->status)
                                                     @case('pending')
-                                                        <span class="badge bg-warning">Chờ xử lý</span>
+                                                        <span class="badge bg-warning text-dark rounded-pill"><i class="bi bi-hourglass me-1"></i>Chờ xử lý</span>
                                                         @break
                                                     @case('in_progress')
-                                                        <span class="badge bg-info">Đang thực hiện</span>
+                                                        <span class="badge bg-info text-dark rounded-pill"><i class="bi bi-arrow-repeat me-1"></i>Đang thực hiện</span>
                                                         @break
                                                     @case('completed')
-                                                        <span class="badge bg-success">Hoàn thành</span>
+                                                        <span class="badge bg-success rounded-pill"><i class="bi bi-check-circle me-1"></i>Hoàn thành</span>
                                                         @break
                                                     @case('cancelled')
-                                                        <span class="badge bg-danger">Đã hủy</span>
+                                                        <span class="badge bg-danger rounded-pill"><i class="bi bi-x-circle me-1"></i>Đã hủy</span>
                                                         @break
                                                 @endswitch
                                             </td>

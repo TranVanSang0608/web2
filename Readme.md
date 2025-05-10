@@ -1,51 +1,89 @@
-# Quản Lý Dự Án & Nhiệm Vụ
+# 🗂️ Quản Lý Dự Án & Nhiệm Vụ
 
-## Giới Thiệu
-Hệ thống quản lý dự án và nhiệm vụ giúp người dùng tổ chức, theo dõi và quản lý công việc một cách hiệu quả. Người dùng có thể tạo dự án, thêm thành viên, quản lý nhiệm vụ trong dự án hoặc các nhiệm vụ cá nhân không thuộc dự án.
+Một hệ thống quản lý công việc đơn giản nhưng mạnh mẽ, giúp cá nhân và nhóm dễ dàng:
+- Tổ chức công việc
+- Quản lý dự án
+- Theo dõi tiến độ từng nhiệm vụ
 
-## Chức Năng Chính
-### 1. Quản Lý Tài Khoản
-- Đăng ký tài khoản
-- Đăng nhập và xác thực
+> 🌟 Thiết kế giao diện hiện đại với Bootstrap 5, biểu tượng trực quan, phân vùng rõ ràng.  
+> 💡 Phù hợp làm project tốt nghiệp hoặc showcase portfolio thực tập Fullstack.
 
-### 2. Quản Lý Dự Án
-- Tạo dự án mới
-- Chỉnh sửa thông tin dự án
-- Xóa dự án
-- Thêm/xóa thành viên trong dự án
-- Hiển thị danh sách dự án
+---
 
-### 3. Quản Lý Nhiệm Vụ
-- Tạo nhiệm vụ mới (trong dự án hoặc nhiệm vụ cá nhân)
-- Chỉnh sửa thông tin nhiệm vụ
-- Gán nhiệm vụ cho thành viên
-- Cập nhật trạng thái nhiệm vụ
+## 🚀 Tính năng chính
+
+### 👤 Quản lý tài khoản
+- Đăng ký, đăng nhập, xác thực bảo mật CSRF
+
+### 📁 Quản lý dự án
+- Tạo / sửa / xóa dự án
+- Thêm / xóa thành viên trong dự án
+- Xem danh sách dự án cá nhân & được mời tham gia
+
+### ✅ Quản lý nhiệm vụ
+- Tạo nhiệm vụ cá nhân hoặc trong dự án
+- Gán người phụ trách
+- Cập nhật trạng thái (Đang thực hiện / Hoàn thành)
 - Xóa nhiệm vụ
 
-## Công Nghệ Sử Dụng
-- Backend: Laravel (PHP)
-- Frontend: Blade 
-- Cơ sở dữ liệu: MySQL 
+---
+
+## 🖥️ Giao diện người dùng (UI)
+- Responsive layout với Bootstrap 5
+- Biểu tượng: Bootstrap Icons
+- Badge màu sắc & phân vùng rõ ràng
+- Giao diện nhất quán: card, shadow, spacing hợp lý
+- Hiển thị avatar người dùng (có avatar mặc định)
+
+---
+
+## 🛠️ Công nghệ sử dụng
+
+| Thành phần       | Công nghệ               |
+|------------------|--------------------------|
+| Backend          | Laravel (PHP)            |
+| Frontend         | Blade + Bootstrap 5      |
+| Cơ sở dữ liệu     | MySQL                    |
+| Icon UI          | Bootstrap Icons          |
+| Hệ thống session | Laravel Auth & CSRF      |
+
+---
+
+## 📸 Giao diện minh hoạ
+
+| Dashboard | Project | Task |
+|----------|---------|------|
+| ![Dashboard](./img/home.png) | ![Project](./img/project.png) | ![Task](./img/task.png) |
+
+---
+
+## 📌 Hướng dẫn sử dụng
+
+```bash
+# Clone repo
+git clone https://github.com/TranVanSang0608/web2.git
+cd web2
+
+# Cài đặt composer & npm
+composer install
+npm install && npm run dev
+
+# Tạo .env & setup DB
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+```
 
 
-## Cách Sử Dụng
-1. **Đăng ký tài khoản hoặc đăng nhập**
-2. **Tạo một dự án mới**
-3. **Thêm thành viên vào dự án**
-4. **Tạo và quản lý nhiệm vụ trong dự án hoặc nhiệm vụ cá nhân**
-5. **Cập nhật tiến độ và theo dõi công việc**
+🔮 Định hướng phát triển
+Gửi email thông báo / thông báo đẩy
 
-## Các giao diện
-![Ảnh 1](./img/home.png)
-![Ảnh 2](./img/project.png)
-![Ảnh 3](./img/task.png)
+Tính năng báo cáo tiến độ dự án
 
+Tích hợp dark mode
 
-## Định Hướng Phát Triển
-- Tích hợp thông báo đẩy
-- Thêm hệ thống báo cáo tiến độ
-- Cải thiện giao diện và trải nghiệm người dùng
+Refactor lại thành SPA (React/Vue + API)
 
-## link repo: https://github.com/TranVanSang0608/web2
-
+🔗 Repo:
+🔗 https://github.com/TranVanSang0608/web2
 

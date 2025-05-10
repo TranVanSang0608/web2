@@ -3,13 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Chi tiết công việc</span>
+        <div class="col-md-8">            <div class="card border rounded shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #f1f3f5;">
+                    <span class="fw-bold"><i class="bi bi-info-circle me-2"></i>Chi tiết công việc</span>
                     <div>
-                        <a href="{{ route('tasks.edit', $task) }}" class="btn btn-sm btn-primary">Chỉnh sửa</a>
-                        <a href="{{ route('tasks.index') }}" class="btn btn-sm btn-secondary">Quay lại</a>
+                        <a href="{{ route('tasks.edit', $task) }}" class="btn btn-sm btn-primary"><i class="bi bi-pencil me-1"></i>Chỉnh sửa</a>
+                        <a href="{{ route('tasks.index') }}" class="btn btn-sm btn-secondary"><i class="bi bi-arrow-left me-1"></i>Quay lại</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -17,19 +16,18 @@
                     
                     <div class="row mb-3">
                         <div class="col-md-4">
-                            <strong>Trạng thái:</strong>
-                            @switch($task->status)
+                            <strong>Trạng thái:</strong>                            @switch($task->status)
                                 @case('pending')
-                                    <span class="badge bg-warning">Chờ xử lý</span>
+                                    <span class="badge bg-warning text-dark rounded-pill"><i class="bi bi-hourglass me-1"></i>Chờ xử lý</span>
                                     @break
                                 @case('in_progress')
-                                    <span class="badge bg-info">Đang thực hiện</span>
+                                    <span class="badge bg-info text-dark rounded-pill"><i class="bi bi-arrow-repeat me-1"></i>Đang thực hiện</span>
                                     @break
                                 @case('completed')
-                                    <span class="badge bg-success">Hoàn thành</span>
+                                    <span class="badge bg-success rounded-pill"><i class="bi bi-check-circle me-1"></i>Hoàn thành</span>
                                     @break
                                 @case('cancelled')
-                                    <span class="badge bg-danger">Đã hủy</span>
+                                    <span class="badge bg-danger rounded-pill"><i class="bi bi-x-circle me-1"></i>Đã hủy</span>
                                     @break
                             @endswitch
                         </div>

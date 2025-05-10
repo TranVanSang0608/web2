@@ -9,10 +9,9 @@
                     {{ session('success') }}
                 </div>
             @endif
-            
-            <div class="card mb-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Dự án của tôi</span>
+              <div class="card mb-4 border rounded shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #f8f9fa;">
+                    <span class="fw-bold"><i class="bi bi-folder2-open me-2"></i>Dự án của tôi</span>
                     <a href="{{ route('projects.create') }}" class="btn btn-primary">Tạo dự án mới</a>
                 </div>
                 <div class="card-body">
@@ -56,9 +55,8 @@
                     @endif
                 </div>
             </div>
-            
-            <div class="card">
-                <div class="card-header">Dự án được mời tham gia</div>
+              <div class="card border rounded shadow-sm">
+                <div class="card-header" style="background-color: #f8f9fa;"><i class="bi bi-people me-2"></i>Dự án được mời tham gia</div>
                 <div class="card-body">
                     @if(count($memberProjects) > 0)
                         <div class="table-responsive">

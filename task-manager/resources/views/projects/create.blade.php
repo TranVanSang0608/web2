@@ -3,9 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Tạo dự án mới</div>
+        <div class="col-md-8">            <div class="card border rounded shadow-sm">
+                <div class="card-header" style="background-color: #f8f9fa;"><i class="bi bi-folder-plus me-2"></i>Tạo dự án mới</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('projects.store') }}">
                         @csrf
@@ -28,11 +27,9 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <a href="{{ route('projects.index') }}" class="btn btn-secondary">Quay lại</a>
-                            <button type="submit" class="btn btn-primary">Tạo dự án</button>
+                        </div>                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('projects.index') }}" class="btn btn-secondary"><i class="bi bi-arrow-left me-1"></i>Quay lại</a>
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>Tạo dự án</button>
                         </div>
                     </form>
                 </div>
