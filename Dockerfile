@@ -21,8 +21,14 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 RUN npm install && npm run build
 
 # Laravel permissions
-RUN chown -R www-data:www-data /www \
-    && chmod -R 755 /www/storage
+RUN php artisan cache:clear || true \
+    && php artisan config:clear || true \
+    && mkdir -p /www/storage/framework/cache/data \
+    && mkdir -p /www/storage/framework/sessions \
+    && mkdir -p /www/storage/framework/views \
+    && mkdir -p /www/storage/logs \
+    && chmod -R 777 /www/storage \
+    && chown -R www-data:www-data /www
 
 # Copy and make the entrypoint script executable
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh

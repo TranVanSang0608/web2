@@ -11,10 +11,14 @@ if [ -z "$(grep -E '^APP_KEY=' .env | grep -v '=$')" ]; then
     php artisan key:generate
 fi
 
+# Ensure storage directory has right permissions
+chmod -R 777 /www/storage || true
+
 # Clear Laravel cache
-php artisan config:clear
-php artisan cache:clear
-php artisan view:clear
+php artisan config:clear || true
+php artisan cache:clear || true
+php artisan view:clear || true
+php artisan route:clear || true
 
 # Start Laravel server
 exec php artisan serve --host=0.0.0.0 --port=8000
