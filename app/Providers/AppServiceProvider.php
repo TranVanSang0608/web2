@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use App\Helpers\ViteAssetHelper;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,9 +22,11 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      *
      * @return void
-     */
-    public function boot()
+     */    public function boot()
     {
-        //
+        // Register a custom Blade directive for vite assets
+        Blade::directive('viteAsset', function ($expression) {
+            return "<?php echo \\App\\Helpers\\ViteAssetHelper::assetPath($expression); ?>";
+        });
     }
 }

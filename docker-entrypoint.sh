@@ -14,6 +14,19 @@ fi
 # Ensure storage directory has right permissions
 chmod -R 777 /www/storage || true
 
+# Check if we're in production environment
+if [[ "$APP_ENV" == "production" ]]; then
+  # Create a basic CSS file if it doesn't exist
+  mkdir -p /www/public/build/assets
+  if [ ! -f "/www/public/build/assets/app.css" ]; then
+    cp -f /www/resources/sass/app.scss /www/public/build/assets/app.css || true
+  fi
+  if [ ! -f "/www/public/build/assets/app.js" ]; then
+    echo "// Placeholder JS" > /www/public/build/assets/app.js || true
+  fi
+  chmod -R 755 /www/public/build
+fi
+
 # Clear Laravel cache
 php artisan config:clear || true
 php artisan cache:clear || true

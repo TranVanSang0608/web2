@@ -18,9 +18,20 @@ WORKDIR /www
 COPY . .
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+# Build frontend assets
 RUN npm install && npm run build
-# Ensure assets are properly copied and visible
-RUN if [ -d "public/build" ]; then chmod -R 755 public/build; fi
+# Make sure assets directory exists and is writable
+RUN mkdir -p public/build/assets && \
+    chmod -R 775 public/build && \
+    chown -R www-data:www-data public/build
+
+# Add node-sass for CSS extraction
+RUN npm install -g node-sass
+# Copy and run the CSS extraction script
+COPY extract-css.sh /usr/local/bin/extract-css.sh
+RUN chmod +x /usr/local/bin/extract-css.sh && \
+    dos2unix /usr/local/bin/extract-css.sh && \
+    /usr/local/bin/extract-css.sh
 
 # Laravel permissions and key generation
 RUN php artisan key:generate --force \

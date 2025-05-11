@@ -5,6 +5,7 @@ services:
     plan: starter
     dockerfilePath: ./Dockerfile
     dockerCommand: /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+    buildCommand: sh ./deploy.sh
     envVars:
       - key: APP_ENV
         value: production

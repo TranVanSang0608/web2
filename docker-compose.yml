@@ -12,13 +12,12 @@ services:
     volumes:
       - .:/www
     ports:
-      - "8000:8000"
-    environment:
+      - "8000:8000"    environment:
       APP_ENV: production
       APP_DEBUG: false
       APP_KEY: base64:70saXWb2kZo4lKZr1/4jV1ea3yBXzH78xCDwHaFssDg=
-      ASSET_URL:
-      APP_URL: https://your-render-url.onrender.com
+      ASSET_URL: /assets
+      APP_URL: http://localhost:8000
       DB_CONNECTION: mysql
       DB_HOST: db
       DB_PORT: 3306
