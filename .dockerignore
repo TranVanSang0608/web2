@@ -1,0 +1,8 @@
+node_modules
+vendor
+.env
+.git
+.idea
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
