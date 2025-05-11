@@ -20,8 +20,9 @@ COPY . .
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 RUN npm install && npm run build
 
-# Laravel permissions
-RUN php artisan cache:clear || true \
+# Laravel permissions and key generation
+RUN php artisan key:generate --force \
+    && php artisan cache:clear || true \
     && php artisan config:clear || true \
     && mkdir -p /www/storage/framework/cache/data \
     && mkdir -p /www/storage/framework/sessions \
