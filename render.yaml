@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: laravel-app
+    env: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    dockerCommand: /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        value: base64:70saXWb2kZo4lKZr1/4jV1ea3yBXzH78xCDwHaFssDg=
+      - key: APP_URL
+        fromService:
+          type: web
+          name: laravel-app
+          property: url
+      - key: ASSET_URL
+        fromService:
+          type: web
+          name: laravel-app
+          property: url

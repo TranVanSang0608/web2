@@ -2,7 +2,7 @@ FROM php:8.1-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git curl zip unzip libpng-dev libonig-dev libxml2-dev libzip-dev dos2unix \
+    git curl zip unzip libpng-dev libonig-dev libxml2-dev libzip-dev dos2unix nginx \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Install Node.js and npm
@@ -19,6 +19,7 @@ COPY . .
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 RUN npm install && npm run build
+RUN cp -r public/build public/
 
 # Laravel permissions and key generation
 RUN php artisan key:generate --force \
@@ -31,6 +32,9 @@ RUN php artisan key:generate --force \
     && chmod -R 777 /www/storage \
     && chown -R www-data:www-data /www
 
+# Set up Nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Copy and make the entrypoint script executable
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh && \
@@ -38,5 +42,9 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh && \
 
 EXPOSE 8000
 
+# Create supervisor configuration to run both php-fpm and nginx
+RUN apt-get update && apt-get install -y supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-CMD ["php-fpm"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

@@ -20,8 +20,17 @@ php artisan cache:clear || true
 php artisan view:clear || true
 php artisan route:clear || true
 
-# Start Laravel server
-exec php artisan serve --host=0.0.0.0 --port=8000
+# Link storage folder
+php artisan storage:link || true
 
-# Execute CMD
+# Optimize for production
+if [[ "$APP_ENV" == "production" ]]; then
+    php artisan optimize:clear
+    php artisan optimize
+    php artisan route:cache
+    php artisan config:cache 
+    php artisan view:cache
+fi
+
+# Execute the main process
 exec "$@"
