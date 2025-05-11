@@ -14,6 +14,7 @@ WORKDIR /www
 COPY . .
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN npm install && npm run build
 
 # Laravel permissions
 RUN chown -R www-data:www-data /www \
