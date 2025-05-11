@@ -2,7 +2,7 @@ FROM php:8.1-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git curl zip unzip libpng-dev libonig-dev libxml2-dev libzip-dev \
+    git curl zip unzip libpng-dev libonig-dev libxml2-dev libzip-dev dos2unix \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Install Node.js and npm
@@ -24,4 +24,12 @@ RUN npm install && npm run build
 RUN chown -R www-data:www-data /www \
     && chmod -R 755 /www/storage
 
+# Copy and make the entrypoint script executable
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh && \
+    dos2unix /usr/local/bin/docker-entrypoint.sh || true
+
+EXPOSE 8000
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["php-fpm"]
