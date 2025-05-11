@@ -20,7 +20,13 @@ php artisan cache:clear || true
 php artisan view:clear || true
 php artisan route:clear || true
 
-# Link storage folder
+# Run the asset fix script if it exists
+if [ -f "/www/fix-assets.sh" ]; then
+    chmod +x /www/fix-assets.sh
+    /www/fix-assets.sh
+fi
+
+# Link storage folder (fallback)
 php artisan storage:link || true
 
 # Optimize for production

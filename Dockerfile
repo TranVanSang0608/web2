@@ -19,7 +19,8 @@ COPY . .
 
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 RUN npm install && npm run build
-RUN cp -r public/build public/
+# Ensure assets are properly copied and visible
+RUN if [ -d "public/build" ]; then chmod -R 755 public/build; fi
 
 # Laravel permissions and key generation
 RUN php artisan key:generate --force \
@@ -37,8 +38,11 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy and make the entrypoint script executable
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY fix-assets.sh /www/fix-assets.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh && \
-    dos2unix /usr/local/bin/docker-entrypoint.sh || true
+    dos2unix /usr/local/bin/docker-entrypoint.sh || true && \
+    chmod +x /www/fix-assets.sh && \
+    dos2unix /www/fix-assets.sh || true
 
 EXPOSE 8000
 
